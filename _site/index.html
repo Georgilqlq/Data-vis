@@ -272,7 +272,8 @@ $(document).ready(function () {
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>library(&quot;readr&quot;)
-data &lt;- read_csv(&quot;test.csv&quot;)</code></pre>
+library(&quot;ggplot2&quot;)
+test &lt;- read_csv(&quot;test.csv&quot;)</code></pre>
 <pre><code>## Rows: 5369 Columns: 5</code></pre>
 <pre><code>## -- Column specification --------------------------------------------------------
 ## Delimiter: &quot;,&quot;
@@ -282,7 +283,7 @@ data &lt;- read_csv(&quot;test.csv&quot;)</code></pre>
 <pre><code>## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>data</code></pre>
+<pre class="r"><code>test</code></pre>
 <pre><code>## # A tibble: 5,369 x 5
 ##    Date       Vaccine Gender `Age group` `Number of infected`
 ##    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                      &lt;dbl&gt;
@@ -297,6 +298,14 @@ data &lt;- read_csv(&quot;test.csv&quot;)</code></pre>
 ##  9 2021-01-09 -       -      -                              0
 ## 10 2021-01-10 -       -      -                              0
 ## # ... with 5,359 more rows</code></pre>
+<pre class="r"><code>test1 &lt;- test$Date
+test2 &lt;- test$`Number of infected`
+ggplot(data = test, aes(x = test1, y = test2)) + 
+  geom_bar(stat = &quot;identity&quot;,fill=&quot;purple&quot;) +
+  labs(title = &quot;Todal daily vaccinated&quot;,
+           substitute = &quot;2021&quot;,
+           x = &quot;Date&quot;, y = &quot;Vaccinated infected (day)&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 
 
 
