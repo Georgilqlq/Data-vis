@@ -2,4 +2,4 @@
 title: "Data visualization"
 ---
     
-Hello, Website! Welcome to the world.   
+There shoud be some data visualization here.   
