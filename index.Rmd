@@ -2,4 +2,10 @@
 title: "Data visualization"
 ---
     
-There shoud be some data visualization here.   
+There should be some data visualization here.   
+```{r}
+library("tidyverse")
+library("readr")
+data <- read_csv("test.csv")
+data
+```
