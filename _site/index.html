@@ -305,7 +305,18 @@ ggplot(data = test, aes(x = test1, y = test2)) +
   labs(title = &quot;Todal daily vaccinated&quot;,
            substitute = &quot;2021&quot;,
            x = &quot;Date&quot;, y = &quot;Vaccinated infected (day)&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="672" /> THIS A PARAGRAPH</p>
+<pre><code>## 
+## Attaching package: &#39;jsonlite&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     flatten</code></pre>
+<pre class="r"><code>ggplot(data = x, aes(x = date, y = numberOfInfected)) + 
+  geom_bar(stat = &quot;identity&quot;,fill=&quot;purple&quot;) +
+  labs(title = &quot;Todal daily vaccinated&quot;,
+           substitute = &quot;2021&quot;,
+           x = &quot;Date&quot;, y = &quot;Vaccinated infected (day)&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 
 
 

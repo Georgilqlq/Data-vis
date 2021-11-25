@@ -16,4 +16,30 @@ ggplot(data = test, aes(x = test1, y = test2)) +
   labs(title = "Todal daily vaccinated",
            substitute = "2021",
            x = "Date", y = "Vaccinated infected (day)")
+
+```
+THIS A PARAGRAPH
+```{r, echo=FALSE}
+library(httr)
+library(jsonlite)
+
+body <- list("resource_uri" = "218d49de-88a8-472a-9bb2-b2a373bd7ab4")
+r <- POST("https://data.egov.bg/api/getResourceData", body = body, encode = "json")
+r1 <- fromJSON(rawToChar(r$content))
+
+x <- as.data.frame(r1[[2]])
+
+x = x[-1,]
+x[[1]]<-as.Date(x[[1]],"%Y/%m/%d")
+x[[5]]<-as.numeric(x[[5]])
+date <- x[[1]]
+numberOfInfected <- x[[5]]
+```
+```{r}
+ggplot(data = x, aes(x = date, y = numberOfInfected)) + 
+  geom_bar(stat = "identity",fill="purple") +
+  labs(title = "Todal daily vaccinated",
+           substitute = "2021",
+           x = "Date", y = "Vaccinated infected (day)")
+
 ```
