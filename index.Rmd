@@ -43,3 +43,26 @@ ggplot(data = x, aes(x = date, y = numberOfInfected)) +
            x = "Date", y = "Vaccinated infected (day)")
 
 ```
+
+```{r}
+x <- filter(x,!V2=="-")
+vaccine <- x[[2]]
+numberOfInfected <- x[[1]]
+vaccine
+ggplot(data = x, aes(x = vaccine, y = numberOfInfected)) + 
+  geom_bar(stat = "identity",fill="orange") +
+  labs(title = "Number of vaccinated hospitalised",
+           substitute = "2021",
+           x = "Type of vaccine", y = "Number of vaccinated")
+```
+
+```{r}
+ageGroup <- x[[4]]
+numberOfInfected <- x[[1]]
+vaccine
+ggplot(data = x, aes(x = ageGroup, y = numberOfInfected)) + 
+  geom_bar(stat = "identity",fill="red") +
+  labs(title = "Number of vaccinated hospitalised",
+           substitute = "2021",
+           x = "Type of vaccine", y = "Number of vaccinated")
+```

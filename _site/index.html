@@ -317,6 +317,91 @@ ggplot(data = test, aes(x = test1, y = test2)) +
            substitute = &quot;2021&quot;,
            x = &quot;Date&quot;, y = &quot;Vaccinated infected (day)&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>x &lt;- filter(x,!V2==&quot;-&quot;)
+vaccine &lt;- x[[2]]
+numberOfInfected &lt;- x[[1]]
+vaccine</code></pre>
+<pre><code>##   [1] &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;       &quot;COM&quot;      &quot;AZ&quot;      
+##   [7] &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;      
+##  [13] &quot;AZ&quot;       &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;      
+##  [19] &quot;COM&quot;      &quot;JANSS&quot;    &quot;MOD&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;      
+##  [25] &quot;AZ&quot;       &quot;MOD&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;MOD&quot;      &quot;AZ&quot;      
+##  [31] &quot;COM&quot;      &quot;MOD&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;      &quot;AZ&quot;      
+##  [37] &quot;COM&quot;      &quot;AZ&quot;       &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;     
+##  [43] &quot;COM&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;JANSS&quot;   
+##  [49] &quot;COM&quot;      &quot;MOD&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;     
+##  [55] &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;     
+##  [61] &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;COM&quot;     
+##  [67] &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;       &quot;AZ&quot;       &quot;MOD&quot;     
+##  [73] &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;MOD&quot;     
+##  [79] &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;COM&quot;     
+##  [85] &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;       &quot;AZ&quot;      
+##  [91] &quot;AZ&quot;       &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;     
+##  [97] &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;     
+## [103] &quot;JANSS&quot;    &quot;COM&quot;      &quot;JANSS&quot;    &quot;COM&quot;      &quot;AZ&quot;       &quot;AZ&quot;      
+## [109] &quot;AZ&quot;       &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;     
+## [115] &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;      &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;AZ&quot;      
+## [121] &quot;AZ&quot;       &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;COM&quot;      &quot;AZ&quot;      
+## [127] &quot;COM&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;       &quot;COM&quot;     
+## [133] &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;       &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;     
+## [139] &quot;AZ&quot;       &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;   
+## [145] &quot;AZ&quot;       &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;     
+## [151] &quot;COM&quot;      &quot;COM&quot;      &quot;AZ - COM&quot; &quot;COM&quot;      &quot;COM&quot;      &quot;MOD&quot;     
+## [157] &quot;AZ&quot;       &quot;AZ&quot;       &quot;AZ&quot;       &quot;JANSS&quot;    &quot;AZ&quot;       &quot;COM&quot;     
+## [163] &quot;AZ&quot;       &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;     
+## [169] &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;COM&quot;      &quot;JANSS&quot;   
+## [175] &quot;COM&quot;      &quot;AZ&quot;       &quot;MOD&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;      
+## [181] &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;      
+## [187] &quot;AZ&quot;       &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;      
+## [193] &quot;COM&quot;      &quot;JANSS&quot;</code></pre>
+<pre class="r"><code>ggplot(data = x, aes(x = vaccine, y = numberOfInfected)) + 
+  geom_bar(stat = &quot;identity&quot;,fill=&quot;orange&quot;) +
+  labs(title = &quot;Number of vaccinated hospitalised&quot;,
+           substitute = &quot;2021&quot;,
+           x = &quot;Type of vaccine&quot;, y = &quot;Number of vaccinated&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>ageGroup &lt;- x[[4]]
+numberOfInfected &lt;- x[[1]]
+vaccine</code></pre>
+<pre><code>##   [1] &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;       &quot;COM&quot;      &quot;AZ&quot;      
+##   [7] &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;      
+##  [13] &quot;AZ&quot;       &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;      
+##  [19] &quot;COM&quot;      &quot;JANSS&quot;    &quot;MOD&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;      
+##  [25] &quot;AZ&quot;       &quot;MOD&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;MOD&quot;      &quot;AZ&quot;      
+##  [31] &quot;COM&quot;      &quot;MOD&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;      &quot;AZ&quot;      
+##  [37] &quot;COM&quot;      &quot;AZ&quot;       &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;     
+##  [43] &quot;COM&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;JANSS&quot;   
+##  [49] &quot;COM&quot;      &quot;MOD&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;     
+##  [55] &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;     
+##  [61] &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;COM&quot;     
+##  [67] &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;       &quot;AZ&quot;       &quot;MOD&quot;     
+##  [73] &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;MOD&quot;     
+##  [79] &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;COM&quot;     
+##  [85] &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;       &quot;AZ&quot;      
+##  [91] &quot;AZ&quot;       &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;     
+##  [97] &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;     
+## [103] &quot;JANSS&quot;    &quot;COM&quot;      &quot;JANSS&quot;    &quot;COM&quot;      &quot;AZ&quot;       &quot;AZ&quot;      
+## [109] &quot;AZ&quot;       &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;     
+## [115] &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;      &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;AZ&quot;      
+## [121] &quot;AZ&quot;       &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;COM&quot;      &quot;AZ&quot;      
+## [127] &quot;COM&quot;      &quot;AZ&quot;       &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;       &quot;COM&quot;     
+## [133] &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;       &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;     
+## [139] &quot;AZ&quot;       &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;   
+## [145] &quot;AZ&quot;       &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;JANSS&quot;    &quot;COM&quot;     
+## [151] &quot;COM&quot;      &quot;COM&quot;      &quot;AZ - COM&quot; &quot;COM&quot;      &quot;COM&quot;      &quot;MOD&quot;     
+## [157] &quot;AZ&quot;       &quot;AZ&quot;       &quot;AZ&quot;       &quot;JANSS&quot;    &quot;AZ&quot;       &quot;COM&quot;     
+## [163] &quot;AZ&quot;       &quot;JANSS&quot;    &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;     
+## [169] &quot;COM&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;COM&quot;      &quot;JANSS&quot;   
+## [175] &quot;COM&quot;      &quot;AZ&quot;       &quot;MOD&quot;      &quot;COM&quot;      &quot;COM&quot;      &quot;AZ&quot;      
+## [181] &quot;JANSS&quot;    &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;       &quot;AZ&quot;      
+## [187] &quot;AZ&quot;       &quot;AZ&quot;       &quot;COM&quot;      &quot;COM&quot;      &quot;JANSS&quot;    &quot;AZ&quot;      
+## [193] &quot;COM&quot;      &quot;JANSS&quot;</code></pre>
+<pre class="r"><code>ggplot(data = x, aes(x = ageGroup, y = numberOfInfected)) + 
+  geom_bar(stat = &quot;identity&quot;,fill=&quot;red&quot;) +
+  labs(title = &quot;Number of vaccinated hospitalised&quot;,
+           substitute = &quot;2021&quot;,
+           x = &quot;Type of vaccine&quot;, y = &quot;Number of vaccinated&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 
 
 
