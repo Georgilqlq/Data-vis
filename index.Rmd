@@ -1,25 +1,12 @@
 ---
-title: "Data visualization"
+title: "Ваксинирани в интензивно отделение"
 ---
     
-There should be some data visualization here.   
-```{r}
+   
+```{r, include=FALSE}
 library("tidyverse")
 library("readr")
 library("ggplot2")
-test <- read_csv("test.csv")
-test
-test1 <- test$Date
-test2 <- test$`Number of infected`
-ggplot(data = test, aes(x = test1, y = test2)) + 
-  geom_bar(stat = "identity",fill="purple") +
-  labs(title = "Todal daily vaccinated",
-           substitute = "2021",
-           x = "Date", y = "Vaccinated infected (day)")
-
-```
-THIS A PARAGRAPH
-```{r, echo=FALSE}
 library(httr)
 library(jsonlite)
 
@@ -35,7 +22,7 @@ x[[5]]<-as.numeric(x[[5]])
 date <- x[[1]]
 numberOfInfected <- x[[5]]
 ```
-```{r}
+```{r,echo=FALSE}
 ggplot(data = x, aes(x = date, y = numberOfInfected)) + 
   geom_bar(stat = "identity",fill="purple") +
   labs(title = "Todal daily vaccinated",
@@ -44,11 +31,10 @@ ggplot(data = x, aes(x = date, y = numberOfInfected)) +
 
 ```
 
-```{r}
+```{r,echo=FALSE}
 x <- filter(x,!V2=="-")
 vaccine <- x[[2]]
 numberOfInfected <- x[[1]]
-vaccine
 ggplot(data = x, aes(x = vaccine, y = numberOfInfected)) + 
   geom_bar(stat = "identity",fill="orange") +
   labs(title = "Number of vaccinated hospitalised",
@@ -56,10 +42,9 @@ ggplot(data = x, aes(x = vaccine, y = numberOfInfected)) +
            x = "Type of vaccine", y = "Number of vaccinated")
 ```
 
-```{r}
+```{r,echo=FALSE}
 ageGroup <- x[[4]]
 numberOfInfected <- x[[1]]
-vaccine
 ggplot(data = x, aes(x = ageGroup, y = numberOfInfected)) + 
   geom_bar(stat = "identity",fill="red") +
   labs(title = "Number of vaccinated hospitalised",
