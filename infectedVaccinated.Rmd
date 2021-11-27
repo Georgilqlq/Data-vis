@@ -1,5 +1,5 @@
 ---
-title: "Ваксинирани в интензивно отделение"
+title: "Заразени ваксинирани"
 ---
     
    
@@ -10,7 +10,7 @@ library("ggplot2")
 library(httr)
 library(jsonlite)
 
-body <- list("resource_uri" = "218d49de-88a8-472a-9bb2-b2a373bd7ab4")
+body <- list("resource_uri" = "e9f795a8-0146-4cf0-9bd1-c0ba3d9aa124")
 r <- POST("https://data.egov.bg/api/getResourceData", body = body, encode = "json")
 r1 <- fromJSON(rawToChar(r$content))
 
@@ -25,22 +25,22 @@ numberOfInfected <- x[[5]]
 ```{r,echo=FALSE}
 ggplot(data = x, aes(x = date, y = numberOfInfected)) + 
   geom_bar(stat = "identity",fill="DarkGreen") +
-  labs(title = "Number of vaccinated in intensive care per day.",
+  labs(title = "Number of vaccinated cases per day.",
            substitute = "2021",
-           x = "Date", y = "Number of vaccinated in intesive care")
+           x = "Date", y = "Number of vaccinated cases")
 
 ```
 
 ```{r,echo=FALSE}
-x <- filter(x,!V2=="-")
+x <- filter(x,!V2=="-",!V4=="NA")
 vaccine <- x[[2]]
 numberOfInfected <- x[[1]]
 ggplot(data = x, aes(x = vaccine, y = numberOfInfected)) + 
   geom_bar(stat = "identity",fill="orange") +
   coord_flip()+
-  labs(title = "Number of vaccinated in intensive care by the type of vaccine.",
+  labs(title = "Number of vaccinated cases by the type of vaccine.",
            substitute = "2021",
-           x = "Type of vaccine", y = "Number of vaccinated in intensive care")+
+           x = "Type of vaccine", y = "Number of vaccinated cases")+
    scale_y_continuous(expand = expansion(mult = c(0, 0.05)),labels = scales::label_number(scale = 1/10000))
 ```
 
@@ -49,8 +49,8 @@ ageGroup <- x[[4]]
 numberOfInfected <- x[[1]]
 ggplot(data = x, aes(x = ageGroup, y = numberOfInfected)) + 
   geom_bar(stat = "identity",fill="red") +
-  labs(title = "Number of vaccinated in intensive care by age",
+  labs(title = "Number of vaccinated cases by age",
            substitute = "2021",
-           x = "Age", y = "Number of vaccinated in intensive care")+
+           x = "Age", y = "Number of vaccinated cases")+
    scale_y_continuous(expand = expansion(mult = c(0, 0.05)),labels = scales::label_number(scale = 1/10000))
 ```

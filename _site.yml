@@ -1,6 +1,12 @@
 name: "data-vis-website"
 navbar:
-  title: "Data"
+  title: "Статистика за ваксинирани"
   left:
-    - text: "Home"
+    - text: "Интензивно отделение"
       href: index.html
+    - text: "Хоспитализирани"
+      href: hospitalizedVaccinated.html
+    - text: "Починали"
+      href: deadVaccinated.html
+    - text: "Заразени"
+      href: infectedVaccinated.html
