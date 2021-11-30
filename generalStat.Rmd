@@ -1,0 +1,63 @@
+---
+title: "Обща статистика за заболелите"
+---
+    
+   
+```{r, include=FALSE}
+library("tidyverse")
+library("readr")
+library("ggplot2")
+library(httr)
+library(jsonlite)
+
+body <- list("resource_uri" = "e59f95dd-afde-43af-83c8-ea2916badd19")
+r <- POST("https://data.egov.bg/api/getResourceData", body = body, encode = "json")
+r1 <- fromJSON(rawToChar(r$content))
+
+x <- as.data.frame(r1[[2]])
+
+x = x[-1,]
+x[[1]]<-as.Date(x[[1]],"%Y/%m/%d")
+x[[6]]<-as.numeric(x[[6]])
+x[[8]]<-as.numeric(x[[8]])
+x[[9]]<-as.numeric(x[[9]])
+x[[13]]<-as.numeric(x[[13]])
+date <- x[[1]]
+numberOfInfected <- x[[6]]
+numberOfHospitalised <-x[[8]]
+numberOfIntCare <-x[[9]]
+numberOfDead <-x[[13]]
+```
+```{r,echo=FALSE}
+ggplot(data = x, aes(x = date, y = numberOfInfected)) + 
+  geom_bar(stat = "identity",fill="DarkGreen") +
+  labs(title = "Total number of cases per day.",
+           substitute = "2021",
+           x = "Date", y = "Number of cases")
+
+```
+```{r,echo=FALSE}
+ggplot(data = x, aes(x = date, y = numberOfHospitalised)) + 
+  geom_bar(stat = "identity",fill="DarkGreen") +
+  labs(title = "Total number of hospitalised cases per day.",
+           substitute = "2021",
+           x = "Date", y = "Total number of hospitalised cases")
+
+```
+```{r,echo=FALSE}
+ggplot(data = x, aes(x = date, y = numberOfIntCare)) + 
+  geom_bar(stat = "identity",fill="DarkGreen") +
+  labs(title = "Total number of cases in intensive care for each day.",
+           substitute = "2021",
+           x = "Date", y = "Total number of cases in intensive care")
+
+```
+```{r,echo=FALSE}
+ggplot(data = x, aes(x = date, y = numberOfDead)) + 
+  geom_bar(stat = "identity",fill="DarkGreen") +
+  labs(title = "Total number of deaths per day.",
+           substitute = "2021",
+           x = "Date", y = "Total number of deaths")
+
+```
+

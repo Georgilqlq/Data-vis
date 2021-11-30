@@ -10,3 +10,5 @@ navbar:
       href: deadVaccinated.html
     - text: "Заразени"
       href: infectedVaccinated.html
+    - text: "Общ брой"
+      href: generalStat.html
